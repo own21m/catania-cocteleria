@@ -1,0 +1,19 @@
+{
+  "name": "catania-cocteleria",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio de coctelería artesanal con experiencias visuales, catálogo y pedidos para WhatsApp.",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs",
+    "format": "prettier --write dist scripts tests docs README.md package.json .prettierrc.json",
+    "format:check": "prettier --check dist scripts tests docs README.md package.json .prettierrc.json",
+    "test": "node --test --test-reporter=tap tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10"
+  }
+}

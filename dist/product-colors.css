@@ -1,0 +1,45 @@
+/* Acento individual de cada bebida. Se carga después de palette.css para que el tema negro no unifique sus colores.
+ * La variable --accent se recibe de la escena; las fotografías conservan sus propios colores.
+ */
+
+/* Halo amplio de fondo calculado con el acento de la bebida activa. */
+.product-scene .scene-sticky::before {
+  inset: -12%;
+  background:
+    radial-gradient(
+      ellipse 39% 56% at 69% 54%,
+      color-mix(in srgb, var(--accent), transparent 69%),
+      color-mix(in srgb, var(--accent), transparent 89%) 50%,
+      transparent 82%
+    ),
+    radial-gradient(
+      ellipse 75% 70% at 72% 65%,
+      color-mix(in srgb, var(--accent), transparent 96%),
+      transparent 85%
+    );
+}
+/* El anillo y el contorno tipográfico repiten ese acento con transparencias diferentes. */
+.product-scene .scene-glass-ring {
+  border-color: color-mix(in srgb, var(--accent), transparent 50%);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--accent), transparent 92%);
+}
+.product-scene .scene-bg-word {
+  -webkit-text-stroke-color: color-mix(in srgb, var(--accent), transparent 68%);
+}
+/* Móvil: apila los bloques y adapta tipografía, imágenes, separación y controles al ancho disponible. */
+@media (max-width: 760px) {
+  .product-scene .scene-sticky::before {
+    background:
+      radial-gradient(
+        ellipse 63% 40% at 65% 74%,
+        color-mix(in srgb, var(--accent), transparent 64%),
+        color-mix(in srgb, var(--accent), transparent 88%) 56%,
+        transparent 90%
+      ),
+      radial-gradient(
+        ellipse 90% 75% at 70% 75%,
+        color-mix(in srgb, var(--accent), transparent 96%),
+        transparent 85%
+      );
+  }
+}

@@ -1,0 +1,21 @@
+# Dependencias y cachés locales de las herramientas de desarrollo.
+node_modules/
+.pnpm-store/
+.cache/
+
+# Credenciales y ajustes exclusivos de cada equipo.
+.env
+.env.*
+!.env.example
+.dev.vars*
+.sites-runtime/
+.openai/
+
+# Archivos temporales, registros y paquetes de entrega.
+*.log
+*.zip
+*.tar.gz
+.DS_Store
+Thumbs.db
+coverage/
+work/

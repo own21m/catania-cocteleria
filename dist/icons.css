@@ -1,0 +1,93 @@
+/* Iconos SVG compartidos, sin depender de símbolos o fuentes del sistema.
+ * Se carga después de la paleta para fijar geometría y alineación; currentColor conserva el color del componente que contiene cada icono.
+ */
+
+/* Tamaño relativo al texto, trazo redondeado y exclusión de eventos de puntero. */
+.ui-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  vertical-align: -0.125em;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+/* Variantes con relleno y ajuste de grosor para flores y destellos. */
+.ui-icon .icon-fill {
+  fill: currentColor;
+  stroke: none;
+}
+.ui-icon.icon-flower {
+  stroke-width: 2.2;
+}
+.ui-icon.icon-spark {
+  stroke-width: 1.2;
+}
+/* Las decoraciones ocupan la caja del elemento que antes contenía un símbolo tipográfico. */
+.brand-flower .ui-icon,
+.line-flower .ui-icon,
+.hero-spark .ui-icon,
+.scene-asterisk .ui-icon,
+.extra-flower .ui-icon,
+.closing-flower .ui-icon,
+.preview-flower .ui-icon {
+  display: block;
+}
+/* El sello conserva su escala sin heredar animaciones o espaciado de letras. */
+.orbit-stamp > span .ui-icon {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  animation: none;
+  font: inherit;
+  letter-spacing: normal;
+}
+/* Iconos de contacto con tamaño y trazo constantes. */
+.contact-socials .ui-icon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+/* Centrado de los iconos en cierres y controles de cantidad. */
+.dialog-close .ui-icon,
+.order-close .ui-icon,
+.order-stepper .ui-icon {
+  display: block;
+  margin: auto;
+}
+/* Proporción horizontal del indicador del mensaje preparado. */
+.order-message-check .ui-icon {
+  width: 1.7em;
+  height: 1.1em;
+}
+/* Alineación del control de movimiento y de sus equivalentes en la vista previa. */
+.motion-toggle > span:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.motion-toggle .ui-icon {
+  width: 1em;
+  height: 1em;
+}
+.preview-brand .ui-icon {
+  width: 0.9em;
+  height: 0.9em;
+}
+.preview-toggle-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.preview-toggle-symbol .ui-icon {
+  width: 1em;
+  height: 1em;
+}

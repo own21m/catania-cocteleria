@@ -1,0 +1,7 @@
+{
+  "provider": "behold",
+  "feedUrl": "",
+  "expectedUsername": "cataniacocteleria",
+  "limit": 5,
+  "refreshMinutes": 60
+}

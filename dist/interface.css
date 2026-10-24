@@ -1,0 +1,690 @@
+/* Capa de componentes: amplía títulos, tarjetas, contacto, horarios y cursores personalizados.
+ * Estos valores intermedios se conservan; palette.css sustituye colores y tipografía, y refinements.css prioriza horarios y lectura.
+ */
+
+/* Variables tipográficas y acentos de la capa de componentes. */
+:root {
+  --display-sans: 'Outfit', 'Manrope', Arial, sans-serif;
+  --lime: #d6f36c;
+  --accent: #ff4777;
+}
+/* Acciones de cabecera y títulos de portada, ampliados antes de aplicar la paleta final. */
+.header-cta {
+  background: transparent;
+  color: var(--ink);
+  font: 700 11px var(--sans);
+  min-height: 46px;
+}
+.hero-copy button {
+  pointer-events: auto;
+}
+.hero h1 {
+  font: 800 clamp(74px, 7.3vw, 118px)/0.93 var(--display-sans);
+  letter-spacing: -0.055em;
+  margin: 34px 0 28px;
+}
+.hero h1 > span:last-child {
+  font: italic 500 clamp(104px, 10.3vw, 165px)/0.86 var(--serif);
+  letter-spacing: -0.035em;
+  margin-top: 8px;
+}
+.hero h1 em {
+  font-size: 1em;
+  font-weight: 500;
+  color: #ff4f88;
+}
+.hero-description {
+  margin: 26px 0;
+}
+.hero .pill-dark {
+  background: #d6f36c;
+  color: #11170b;
+  box-shadow: 0 0 35px #cfff5d18;
+  font: 800 13px var(--display-sans);
+  gap: 44px;
+}
+.hero .pill-dark:hover {
+  box-shadow: 0 0 45px #cfff5d33;
+}
+.hero-explore {
+  display: block;
+  width: max-content;
+  margin-top: 18px;
+  font-size: 10px;
+  color: #d2c9d0;
+  pointer-events: auto;
+}
+.hero-explore span {
+  margin-left: 13px;
+  color: #d6f36c;
+}
+/* Jerarquía de titulares editoriales en colección, escenas y ritual. */
+.display {
+  font: 800 clamp(43px, 4.1vw, 68px)/1.02 var(--display-sans);
+  letter-spacing: -0.05em;
+}
+.display em {
+  display: inline-block;
+  font: italic 500 1.32em/0.91 var(--serif);
+  letter-spacing: -0.035em;
+  margin-top: 7px;
+  color: #ff5c91;
+}
+.scene-copy h2 {
+  font: 800 clamp(55px, 5.7vw, 90px)/0.96 var(--display-sans);
+  letter-spacing: -0.05em;
+}
+.scene-copy h2 em {
+  font: italic 500 1.18em/0.91 var(--serif);
+  letter-spacing: -0.035em;
+  margin-top: 7px;
+}
+.scene-copy .eyebrow {
+  font-weight: 700;
+}
+.scene-link {
+  min-height: 45px;
+}
+.ritual-copy .display {
+  font-size: clamp(43px, 4vw, 65px);
+}
+.catalog .display {
+  font-size: clamp(43px, 4vw, 65px);
+}
+/* Nombre de bebida y enlace de pedido dentro de cada tarjeta. */
+.card-meta h3 {
+  font: 700 22px/1.08 var(--display-sans);
+  letter-spacing: -0.7px;
+}
+.card-order {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ffffff33;
+  padding: 9px 0;
+  margin-top: 10px;
+  font: 700 11px var(--display-sans);
+  color: var(--accent);
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+.card-order span {
+  font-size: 22px;
+}
+.card-order:hover {
+  color: #fff;
+  border-color: var(--accent);
+}
+/* Arte tipográfico para bebidas que no disponen de una fotografía independiente. */
+.extra-product-art {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 0.74;
+  border-radius: 130px 130px 3px 3px;
+  border: 1px solid #ffffff25;
+  background:
+    radial-gradient(
+      ellipse at 60% 55%,
+      color-mix(in srgb, var(--accent), transparent 85%),
+      transparent 75%
+    ),
+    #101014;
+  overflow: hidden;
+  padding: 24px 20px;
+  color: var(--accent);
+}
+.extra-product-art .card-badge {
+  top: 28px;
+}
+.extra-word {
+  font: 800 clamp(28px, 2.9vw, 49px)/1 var(--display-sans);
+  letter-spacing: -0.05em;
+  color: #f5f0e8;
+  z-index: 2;
+}
+.extra-word em {
+  display: block;
+  font: italic 500 0.9em/1 var(--serif);
+  color: var(--accent);
+  letter-spacing: -1px;
+  margin-top: 12px;
+}
+.extra-flower {
+  position: absolute;
+  font-size: 200px;
+  line-height: 1;
+  opacity: 0.09;
+  right: -45px;
+  bottom: 35px;
+  transition: rotate 2s;
+}
+.extra-product-art:hover .extra-flower {
+  rotate: 45deg;
+}
+.extra-orbit {
+  position: absolute;
+  left: -20%;
+  top: 25%;
+  width: 130%;
+  height: 53%;
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 70%);
+  border-radius: 50%;
+  transform: rotate(-33deg);
+}
+.extra-cta {
+  position: absolute;
+  bottom: 27px;
+  left: 20px;
+  right: 20px;
+  font-size: 9px;
+  letter-spacing: 0.3px;
+}
+/* Compatibilidad del cierre anterior y acciones del diálogo de detalle. */
+.closing h2 {
+  font: 800 clamp(60px, 7.1vw, 115px)/0.99 var(--display-sans);
+  letter-spacing: -0.055em;
+}
+.closing h2 em {
+  font: italic 500 1.3em/0.85 var(--serif);
+  letter-spacing: -0.03em;
+}
+.closing .pill {
+  font: 700 12px var(--display-sans);
+  background: #d6f36c;
+  color: #11170b;
+}
+.detail-order {
+  width: 100%;
+  background: #d6f36c;
+  color: #11170b;
+  font: 800 12px var(--display-sans);
+  gap: 12px;
+}
+.dialog-back {
+  display: block;
+  width: 100%;
+  margin: 16px 0 0;
+  border: 0;
+  background: transparent;
+  color: #c9c0c7;
+  font-size: 10px;
+  padding: 9px;
+}
+.dialog-back:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+/* Distribución de contacto: presentación, acceso al pedido y enlaces sociales. */
+.contact-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12%;
+  align-items: center;
+  background: linear-gradient(#08090c80, #0a0b0dca);
+  border-top: 1px solid #ffffff1c;
+}
+.contact-heading .display {
+  font-size: clamp(46px, 4.7vw, 74px);
+}
+.contact-lead {
+  max-width: 360px;
+  color: #c9c1c8;
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 28px 0;
+}
+.contact-primary {
+  background: #d6f36c;
+  color: #11170b;
+  font: 800 12px var(--display-sans);
+  padding: 18px 25px;
+  gap: 65px;
+}
+/* Filas de contacto con icono, nombre, dato de la cuenta y enlace externo. */
+.contact-socials {
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+  max-width: 400px;
+}
+.contact-socials > a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid #ffffff25;
+  padding: 17px 0;
+  color: #f3f1e9;
+  transition: color 0.3s;
+}
+.contact-socials > a:hover {
+  color: #ff7cac;
+}
+.contact-socials svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  flex-shrink: 0;
+}
+.contact-socials > a > span {
+  font: 700 13px var(--display-sans);
+}
+.contact-socials small {
+  display: block;
+  font: 400 10px var(--sans);
+  color: #c3b8c2;
+  margin-top: 5px;
+}
+.contact-socials b {
+  margin-left: auto;
+  font: 24px var(--sans);
+  color: #d6f36c;
+}
+/* Tarjeta de horarios: indicador dinámico de apertura, franjas horarias y categorías del negocio. */
+.hours-card {
+  background: radial-gradient(ellipse at 95% 0, #c8f36b15, transparent 65%), #151917;
+  border: 1px solid #d6f36c30;
+  border-radius: 30px;
+  padding: 32px 34px;
+}
+.hours-top {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-bottom: 1px solid #d6f36c26;
+  padding-bottom: 20px;
+}
+.hours-top p {
+  margin: 0;
+  color: #d8d5ce;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+.hours-top > span:last-child {
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: #b8c0ac;
+  margin-left: auto;
+}
+.status-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #d6b484;
+}
+.is-open .status-dot {
+  background: #b4f87b;
+  box-shadow: 0 0 12px #b4f87b66;
+}
+.is-open .hours-top p {
+  color: #d6f36c;
+}
+.hours-card h3 {
+  font: 800 35px/0.99 var(--display-sans);
+  letter-spacing: -1.6px;
+  margin: 29px 0 28px;
+}
+.hours-card h3 em {
+  font: italic 500 1.34em/0.9 var(--serif);
+  color: #d6f36c;
+}
+/* Listado semántico de días y horas; refinements.css aumenta los tamaños finales. */
+.hours-list {
+  margin: 0;
+}
+.hours-list > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  border-bottom: 1px solid #ffffff17;
+  padding: 13px 0;
+  font-size: 11px;
+}
+.hours-list dt {
+  color: #c9d0c0;
+}
+.hours-list dd {
+  margin: 0;
+  color: #f1f3e9;
+  white-space: nowrap;
+}
+.hours-note {
+  color: #b5c0ab;
+  font-size: 9px;
+  line-height: 1.9;
+  margin: 20px 0;
+}
+.business-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.business-tags span {
+  padding: 5px 8px;
+  border: 1px solid #d6f36c22;
+  border-radius: 20px;
+  color: #cbd8bb;
+  font-size: 8px;
+}
+/* Compatibilidad del banner social anterior, ausente en la composición actual. */
+.instagram-banner {
+  background: #d6f36c;
+  color: #14200d;
+  padding: 40px 6%;
+  overflow: hidden;
+}
+.instagram-banner > a {
+  display: block;
+  max-width: 1400px;
+  margin: auto;
+  position: relative;
+}
+.instagram-kicker {
+  display: block;
+  font: 700 8px var(--sans);
+  letter-spacing: 1.7px;
+  margin-bottom: 12px;
+}
+.instagram-handle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font: 800 clamp(30px, 5vw, 80px)/1 var(--display-sans);
+  letter-spacing: -0.055em;
+}
+.instagram-handle > span {
+  font-weight: 500;
+  transition: translate 0.4s;
+}
+.instagram-banner a:hover .instagram-handle > span {
+  translate: 8px -8px;
+}
+.instagram-note {
+  display: block;
+  font-size: 10px;
+  margin-top: 16px;
+}
+/* Reserva inferior para el contacto flotante y ubicación del control global de movimiento. */
+.site-footer {
+  padding-bottom: 115px;
+}
+.motion-toggle {
+  left: 16px;
+  right: auto;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 26;
+}
+.cursor-glow {
+  display: none !important;
+}
+/* Puntero preciso: activa los cursores ilustrados de reposo, interacción y clic o desplazamiento; los campos de texto mantienen su cursor habitual. */
+@media (pointer: fine) {
+  .cursor-ready,
+  .cursor-ready body,
+  .cursor-ready main,
+  .cursor-ready section,
+  .cursor-ready dialog {
+    cursor:
+      url('assets/cursor-point-48.png') 8 7,
+      auto;
+  }
+  .cursor-ready a,
+  .cursor-ready button,
+  .cursor-ready summary,
+  .cursor-ready [role='button'],
+  .cursor-ready label[for] {
+    cursor:
+      url('assets/cursor-bottle-48.png') 8 7,
+      pointer;
+  }
+  .cursor-ready input,
+  .cursor-ready textarea {
+    cursor: text;
+  }
+  .cursor-ready input[type='number'] {
+    cursor: auto;
+  }
+  .cursor-ready.cursor-scrolling,
+  .cursor-ready.cursor-scrolling body,
+  .cursor-ready.cursor-scrolling main,
+  .cursor-ready.cursor-scrolling section {
+    cursor:
+      url('assets/cursor-sip-48.png') 8 7,
+      auto;
+  }
+  .cursor-ready.cursor-pressed,
+  .cursor-ready.cursor-pressed body,
+  .cursor-ready.cursor-pressed * {
+    cursor:
+      url('assets/cursor-sip-48.png') 8 7,
+      pointer !important;
+  }
+}
+/* Escritorio compacto: reduce espacios y ajusta títulos, columnas y controles antes del salto a móvil. */
+@media (max-width: 1100px) {
+  .hero h1 {
+    font-size: clamp(70px, 7.7vw, 96px);
+  }
+  .hero h1 > span:last-child {
+    font-size: clamp(105px, 10.6vw, 140px);
+  }
+  .scene-copy h2 {
+    font-size: 67px;
+  }
+  .contact-section {
+    gap: 7%;
+  }
+  .hours-card {
+    padding: 28px;
+  }
+}
+/* Móvil: apila los bloques y adapta tipografía, imágenes, separación y controles al ancho disponible. */
+@media (max-width: 760px) {
+  .hero {
+    min-height: 990px;
+  }
+  .hero h1 {
+    font-size: clamp(49px, 14.2vw, 82px);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+    margin: 27px 0;
+  }
+  .hero h1 > span:last-child {
+    font-size: clamp(82px, 20vw, 115px);
+    line-height: 0.86;
+    margin-top: 5px;
+  }
+  .hero-description {
+    margin: 23px 0;
+  }
+  .hero .pill-dark {
+    font-size: 12px;
+    gap: 46px;
+  }
+  .hero-explore {
+    font-size: 9px;
+    margin-top: 15px;
+  }
+  .hero-art {
+    margin-top: 15px;
+  }
+  .display,
+  .catalog .display,
+  .ritual-copy .display {
+    font-size: 43px;
+    letter-spacing: -0.045em;
+  }
+  .display em {
+    font-size: 1.35em;
+    line-height: 0.92;
+  }
+  .scene-copy h2 {
+    font-size: 46px;
+    line-height: 0.97;
+    letter-spacing: -0.045em;
+  }
+  .scene-copy h2 em {
+    font-size: 1.2em;
+    display: inline;
+    line-height: 0.92;
+  }
+  .scene-copy {
+    max-width: 100%;
+  }
+  .card-meta h3 {
+    font-size: 19px;
+    letter-spacing: -0.6px;
+  }
+  .card-order {
+    font-size: 11px;
+    min-height: 44px;
+  }
+  .extra-product-art {
+    border-radius: 90px 90px 3px 3px;
+    padding: 20px 10px;
+  }
+  .extra-word {
+    font-size: 31px;
+  }
+  .extra-word em {
+    font-size: 30px;
+  }
+  .extra-product-art .card-badge {
+    top: 22px;
+    font-size: 6px;
+    letter-spacing: 0.7px;
+  }
+  .extra-cta {
+    left: 10px;
+    right: 10px;
+    bottom: 20px;
+    font-size: 7px;
+  }
+  .extra-flower {
+    font-size: 150px;
+  }
+  .closing h2 {
+    font-size: 53px;
+    letter-spacing: -0.055em;
+  }
+  .closing h2 em {
+    font-size: 1.3em;
+  }
+  .contact-section {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+  .contact-heading .display {
+    font-size: 48px;
+  }
+  .contact-lead {
+    font-size: 11px;
+    max-width: 330px;
+  }
+  .contact-primary {
+    width: 100%;
+    font-size: 13px;
+  }
+  .contact-socials {
+    max-width: none;
+    margin-top: 27px;
+  }
+  .contact-socials > a {
+    min-height: 68px;
+  }
+  .contact-socials > a > span {
+    font-size: 14px;
+  }
+  .contact-socials small {
+    font-size: 11px;
+  }
+  .hours-card {
+    border-radius: 25px;
+    padding: 25px;
+  }
+  .hours-card h3 {
+    font-size: 34px;
+  }
+  .hours-top {
+    align-items: flex-start;
+  }
+  .hours-top p {
+    font-size: 10px;
+    flex: 1;
+  }
+  .hours-top > span:last-child {
+    font-size: 6px;
+    margin-top: 4px;
+  }
+  .hours-list > div {
+    font-size: 12px;
+    padding: 15px 0;
+  }
+  .hours-note {
+    font-size: 10px;
+  }
+  .business-tags span {
+    font-size: 8px;
+  }
+  .instagram-banner {
+    padding: 35px 6%;
+  }
+  .instagram-handle {
+    font-size: clamp(24px, 7vw, 43px);
+    letter-spacing: -0.045em;
+    gap: 8px;
+  }
+  .instagram-note {
+    font-size: 9px;
+  }
+  .motion-toggle {
+    left: 10px;
+    right: auto;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    font-size: 7px;
+    padding: 7px 8px;
+  }
+  .site-footer {
+    padding-bottom: 125px;
+  }
+  .detail-order {
+    font-size: 12px;
+    min-height: 50px;
+  }
+}
+/* Pantallas muy estrechas: reduce los espacios secundarios sin ocultar la información ni las acciones esenciales. */
+@media (max-width: 370px) {
+  .hero h1 {
+    font-size: 48px;
+  }
+  .contact-heading .display {
+    font-size: 42px;
+  }
+  .hours-card {
+    padding: 21px;
+  }
+  .hours-top > span:last-child {
+    display: none;
+  }
+  .motion-toggle .motion-label {
+    max-width: 45px;
+    line-height: 1.3;
+  }
+  .filter {
+    padding: 9px 10px;
+  }
+}

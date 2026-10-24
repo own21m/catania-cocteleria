@@ -1,0 +1,17 @@
+<!-- Identificador de la pestaña: inicial de Catania sobre una base redondeada. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- La forma de fondo mantiene contraste en pestañas claras y oscuras. -->
+  <rect width="64" height="64" rx="16" fill="#233b30" />
+  <!-- La letra es texto vectorial y no depende de un carácter de emoji. -->
+  <text
+    x="32"
+    y="48"
+    fill="#f7efe0"
+    text-anchor="middle"
+    font-family="Georgia,serif"
+    font-size="48"
+    font-style="italic"
+  >
+    C
+  </text>
+</svg>

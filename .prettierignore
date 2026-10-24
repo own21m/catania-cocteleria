@@ -1,0 +1,6 @@
+# Los medios binarios se mantienen en sus formatos originales.
+dist/assets/
+source-assets/
+node_modules/
+pnpm-lock.yaml
+package-lock.json

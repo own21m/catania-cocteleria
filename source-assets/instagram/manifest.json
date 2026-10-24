@@ -1,0 +1,57 @@
+[
+  {
+    "asset": "dist/assets/social-summer-sangria.webp",
+    "preserved_original": "source-assets/instagram/summer-sangria.png",
+    "description": "Sangría de frutos rojos, campaña de verano",
+    "width": 329,
+    "height": 441,
+    "webp_bytes": 220702,
+    "source_bytes": 367619,
+    "encoding": "WebP lossless, method 6, exact",
+    "pixel_identical": true
+  },
+  {
+    "asset": "dist/assets/social-daiquiri-halloween.webp",
+    "preserved_original": "source-assets/instagram/daiquiri-halloween.png",
+    "description": "Daiquirí de fresa, campaña de Halloween",
+    "width": 333,
+    "height": 441,
+    "webp_bytes": 140540,
+    "source_bytes": 233595,
+    "encoding": "WebP lossless, method 6, exact",
+    "pixel_identical": true
+  },
+  {
+    "asset": "dist/assets/social-amor-amistad.webp",
+    "preserved_original": "source-assets/instagram/amor-amistad.png",
+    "description": "Sangría, campaña de amor y amistad",
+    "width": 335,
+    "height": 417,
+    "webp_bytes": 145382,
+    "source_bytes": 247270,
+    "encoding": "WebP lossless, method 6, exact",
+    "pixel_identical": true
+  },
+  {
+    "asset": "dist/assets/social-comunidad-causa.webp",
+    "preserved_original": "source-assets/instagram/comunidad-causa.png",
+    "description": "Retrato de la comunidad Catania y campaña de una causa",
+    "width": 332,
+    "height": 421,
+    "webp_bytes": 124398,
+    "source_bytes": 201232,
+    "encoding": "WebP lossless, method 6, exact",
+    "pixel_identical": true
+  },
+  {
+    "asset": "dist/assets/social-sangria-halloween.webp",
+    "preserved_original": "source-assets/instagram/sangria-halloween.png",
+    "description": "Sangría, campaña de Halloween",
+    "width": 334,
+    "height": 414,
+    "webp_bytes": 153390,
+    "source_bytes": 252780,
+    "encoding": "WebP lossless, method 6, exact",
+    "pixel_identical": true
+  }
+]

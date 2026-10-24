@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Página auxiliar no indexable para observar las animaciones de la interfaz. -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="robots" content="noindex" />
+    <title>Catania · El movimiento del brindis</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="contact.css" />
+    <link rel="stylesheet" href="palette.css" />
+    <!-- Estilos propios de la demostración, separados para facilitar su mantenimiento. -->
+    <link rel="stylesheet" href="motion-preview.css" />
+    <link rel="stylesheet" href="icons.css?v=5" />
+  </head>
+  <body>
+    <!-- Escena visual independiente del catálogo y del formulario de compra. -->
+    <div class="preview-aura" aria-hidden="true"></div>
+    <header class="preview-header">
+      <a class="preview-brand" href="./index.html" aria-label="Catania, abrir página principal"
+        >Catania<span aria-hidden="true"
+          ><svg
+            class="ui-icon icon-flower"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07 19.07 4.93" /></svg></span
+      ></a>
+      <div class="preview-header-meta">
+        <span class="preview-edition">EL MOVIMIENTO DEL BRINDIS</span
+        ><a class="preview-back" href="./index.html"
+          >Abrir Catania
+          <span aria-hidden="true"
+            ><svg
+              class="ui-icon icon-arrow-up-right"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M6 18 18 6M6 6h12v12" /></svg></span
+        ></a>
+      </div>
+    </header>
+    <main class="preview-stage" aria-labelledby="preview-title">
+      <div class="preview-copy">
+        <p class="preview-eyebrow">VISTA ANIMADA · CATANIA</p>
+        <h1 class="preview-title" id="preview-title">
+          <span>Sumérgete</span><span>en el</span><span>momento.</span>
+        </h1>
+        <p class="preview-description">
+          Una invitación a explorar.<br />Un gesto para descubrir.<br /><strong
+            >Y mil razones para brindar.</strong
+          >
+        </p>
+      </div>
+      <span class="preview-ribbon" aria-hidden="true"></span
+      ><span class="preview-ribbon second" aria-hidden="true"></span>
+      <div class="preview-bottle-wrap">
+        <span class="preview-bottle-halo" aria-hidden="true"></span
+        ><img
+          class="preview-bottle"
+          src="assets/cutout-6928.webp"
+          width="800"
+          height="1400"
+          alt="Botella Catania de sangría artesanal de frutos rojos"
+        /><span class="preview-bottle-note">EL SABOR TIENE SU PROPIO RITMO</span
+        ><span class="preview-flower" aria-hidden="true"
+          ><svg
+            class="ui-icon icon-flower"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07 19.07 4.93" /></svg
+        ></span>
+      </div>
+      <div class="preview-scenery-note" aria-hidden="true">
+        <span>SANGRÍA DE FRUTOS ROJOS</span><span>HECHO PARA COMPARTIR.</span>
+      </div>
+    </main>
+    <aside class="preview-controls" aria-label="Controles de la vista animada">
+      <div class="preview-control-top">
+        <p class="preview-live" id="tour-status" role="status" aria-live="polite">
+          Explora · El primer gesto
+        </p>
+        <button class="preview-toggle" id="tour-toggle" type="button" aria-pressed="false">
+          <span class="preview-toggle-symbol" aria-hidden="true"
+            ><svg
+              class="ui-icon icon-pause"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path class="icon-fill" d="M6 4h4v16H6zm8 0h4v16h-4z" /></svg></span
+          ><span class="preview-toggle-label">Pausar</span>
+        </button>
+      </div>
+      <ol class="preview-states" aria-label="Los tres estados del cursor">
+        <li class="is-active" data-cursor-state="point">
+          <img
+            src="assets/cursor-point-48.png"
+            width="48"
+            height="48"
+            alt="Guante señalando"
+          /><span>Explora</span>
+        </li>
+        <li data-cursor-state="bottle">
+          <img
+            src="assets/cursor-bottle-48.png"
+            width="48"
+            height="48"
+            alt="Guante con una botella"
+          /><span>Descubre</span>
+        </li>
+        <li data-cursor-state="sip">
+          <img src="assets/cursor-sip-48.png" width="48" height="48" alt="Guante brindando" /><span
+            >Brinda</span
+          >
+        </li>
+      </ol>
+    </aside>
+    <p class="preview-disclaimer">Vista de movimiento.<br />El botón solo cambia el contador.</p>
+    <button
+      class="contact-float"
+      id="preview-contact"
+      type="button"
+      aria-label="Contáctanos: probar contador de demostración, 2 bebidas"
+    >
+      <span class="contact-bubbles" aria-hidden="true"
+        ><i></i><i></i><i></i><i></i><i></i><i></i
+      ></span>
+      <span class="contact-float-icon" aria-hidden="true"
+        ><svg viewBox="0 0 24 24" fill="none">
+          <path
+            d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.3-4.8A8.5 8.5 0 1 1 20.5 11.7Z"
+            stroke="currentColor"
+            stroke-width="1.5"
+          />
+          <path
+            d="M8.6 7.8c-.8.2-1 1.1-.7 2 .8 2.5 2.8 4.4 5.4 5.2.8.2 1.9-.1 2.1-1 .1-.3-.1-.5-.4-.7l-1.5-.7c-.2-.1-.4 0-.6.2l-.6.7a7 7 0 0 1-3.2-3.1l.6-.7c.2-.2.2-.4.1-.6l-.6-1.4c-.1-.2-.3-.3-.6-.2Z"
+            fill="currentColor"
+          /></svg
+      ></span>
+      <span class="contact-float-label">CONTÁCTANOS</span
+      ><span class="contact-float-count" aria-hidden="true">2</span>
+    </button>
+    <div class="preview-tour-cursor" aria-hidden="true">
+      <img src="assets/cursor-point-48.png" width="48" height="48" alt="" /><span
+        class="preview-click-ring"
+      ></span>
+    </div>
+    <script src="icons.js?v=5"></script>
+    <!-- La demostración reutiliza los iconos, pero no abre WhatsApp ni guarda pedidos. -->
+    <script src="motion-preview.js"></script>
+  </body>
+</html>

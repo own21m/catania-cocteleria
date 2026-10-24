@@ -1,0 +1,1891 @@
+/* Capa base: variables, estructura, componentes y animaciones compartidas.
+ * Los archivos posteriores amplían o sustituyen estas reglas; su orden de carga conserva el diseño actual.
+ * También permanecen estilos de composiciones anteriores para no alterar la compatibilidad de las clases.
+ */
+
+/* Variables iniciales de color y familias tipográficas; palette.css define la paleta negra final. */
+:root {
+  --cream: #f5f0e6;
+  --ink: #233b30;
+  --muted: #6a7267;
+  --orange: #c9653b;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Manrope', Arial, sans-serif;
+}
+/* Normalización del modelo de caja, enlaces, botones, imágenes y foco visible. */
+* {
+  box-sizing: border-box;
+}
+/* Desplazamiento suave y margen de anclaje bajo la cabecera. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font: 14px/1.6 var(--sans);
+  overflow-x: hidden;
+}
+body.modal-open {
+  overflow: hidden;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 7px;
+}
+::selection {
+  background: #c9653b;
+  color: #fff9ea;
+}
+/* Acceso rápido al contenido principal mediante teclado y progreso de lectura. */
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 20px;
+  z-index: 100;
+  padding: 10px;
+  background: var(--cream);
+}
+.skip-link:focus {
+  top: 12px;
+}
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--orange);
+  z-index: 80;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+/* Cabecera superpuesta: marca, navegación de escritorio y acceso al pedido. */
+.site-header {
+  height: 100px;
+  padding: 0 4.5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 30;
+  gap: 30px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-flower {
+  font-size: 47px;
+  line-height: 1;
+  color: var(--orange);
+  font-weight: 400;
+}
+.brand > span:last-child {
+  font: italic 500 43px/0.8 var(--serif);
+  letter-spacing: -2px;
+}
+.brand small {
+  display: block;
+  font: 600 7px/1 var(--sans);
+  letter-spacing: 1.7px;
+  margin-top: 10px;
+}
+/* Enlaces principales con subrayado animado al pasar el cursor. */
+.desktop-nav {
+  display: flex;
+  gap: 33px;
+  font-size: 11px;
+}
+.desktop-nav a {
+  position: relative;
+}
+.desktop-nav a:after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s;
+}
+.desktop-nav a:hover:after {
+  transform: scaleX(1);
+}
+/* Acción de cabecera y reserva del menú móvil, cuya apertura controla JavaScript. */
+.header-cta {
+  font-size: 11px;
+  border: 1px solid #233b3044;
+  padding: 11px 18px;
+  border-radius: 30px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+.header-cta:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+.header-cta span {
+  font-size: 20px;
+}
+.menu-toggle,
+.mobile-nav {
+  display: none;
+}
+/* Distribución inicial de portada; moments.css la adapta al álbum de fotografías actual. */
+.hero {
+  min-height: 850px;
+  height: 100svh;
+  max-height: 1100px;
+  position: relative;
+  padding: 150px 4.5% 95px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  isolation: isolate;
+}
+.hero-copy {
+  z-index: 3;
+  align-self: center;
+}
+/* Antetítulos y líneas de acento reutilizados para identificar las secciones. */
+.eyebrow {
+  font: 600 10px/1.4 var(--sans);
+  letter-spacing: 2px;
+  margin: 0 0 28px;
+}
+.tiny-line {
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+/* Título de portada con entradas escalonadas; las capas de interfaz y paleta ajustan su tipografía. */
+.hero h1 {
+  font: 500 clamp(75px, 7.9vw, 136px)/0.85 var(--serif);
+  letter-spacing: -5px;
+  margin: 35px 0 30px;
+}
+.hero h1 > span {
+  display: block;
+  animation: line-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero h1 > span:nth-child(2) {
+  animation-delay: 0.13s;
+}
+.hero h1 > span:nth-child(3) {
+  animation-delay: 0.26s;
+}
+em {
+  font-weight: 400;
+}
+.hero h1 em {
+  color: var(--orange);
+}
+/* Texto de presentación y botones tipo píldora compartidos por las llamadas a la acción. */
+.hero-description {
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 25px 0 28px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 45px;
+  padding: 17px 24px;
+  border: 0;
+  border-radius: 40px;
+  font-size: 11px;
+  transition:
+    gap 0.3s,
+    background 0.3s,
+    transform 0.3s;
+  min-height: 54px;
+}
+.pill:hover {
+  gap: 60px;
+  transform: translateY(-2px);
+}
+.pill span {
+  font-size: 21px;
+  line-height: 1;
+}
+.pill-dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+.pill-cream {
+  background: var(--cream);
+  color: var(--ink);
+}
+/* Composición anterior de botella, halo y sello; se conserva sin sustituir el álbum actual. */
+.hero-art {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  z-index: 1;
+}
+.hero-halo {
+  position: absolute;
+  width: 85%;
+  aspect-ratio: 0.8;
+  top: 1%;
+  left: 12%;
+  border-radius: 50%;
+  background: #e8d9c3;
+  opacity: 0.45;
+  filter: blur(35px);
+}
+.hero-outline {
+  position: absolute;
+  font: 400 550px/1 var(--serif);
+  top: -6%;
+  right: -7%;
+  color: transparent;
+  -webkit-text-stroke: 1px #c9653b30;
+  transform: rotate(12deg);
+  z-index: -1;
+}
+.hero-photo {
+  position: absolute;
+  left: 9%;
+  top: -3%;
+  height: 110%;
+  width: 80%;
+  mix-blend-mode: multiply;
+  will-change: transform;
+  animation: hero-photo-in 1.5s 0.1s both;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(18px 23px 18px #44291c18);
+  mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+}
+.orbit-stamp {
+  position: absolute;
+  width: 132px;
+  height: 132px;
+  right: -1%;
+  top: 12%;
+  color: var(--orange);
+  transform: rotate(15deg);
+  z-index: 3;
+}
+.orbit-stamp svg {
+  width: 100%;
+  animation: rotate-stamp 32s linear infinite;
+  fill: currentColor;
+  font: 600 10px var(--sans);
+  letter-spacing: 2.5px;
+}
+.orbit-stamp > span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  font-size: 60px;
+}
+/* Destellos, pie de imagen y puntos decorativos de la composición de portada. */
+.hero-spark {
+  position: absolute;
+  color: var(--orange);
+  font-family: Georgia, serif;
+  font-weight: 400;
+  animation: sparkle 4s ease-in-out infinite;
+}
+.spark-one {
+  font-size: 70px;
+  left: 8%;
+  top: 16%;
+}
+.spark-two {
+  font-size: 40px;
+  right: 6%;
+  bottom: 19%;
+  animation-delay: 1.5s;
+}
+.hero-caption {
+  position: absolute;
+  bottom: -14px;
+  left: 13%;
+  right: 4%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font: 500 8px var(--sans);
+  letter-spacing: 1.1px;
+}
+.hero-caption > span:last-child {
+  margin-left: auto;
+}
+.mini-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--orange);
+  border-radius: 50%;
+}
+/* Franja inferior de la portada con indicación de desplazamiento. */
+.hero-bottom {
+  position: absolute;
+  bottom: 27px;
+  left: 4.5%;
+  right: 4.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 21px;
+  border-top: 1px solid #233b3026;
+  font-size: 10px;
+}
+.hero-bottom > a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.down-arrow {
+  font-size: 23px;
+  animation: bounce 2.4s ease-in-out infinite;
+}
+.hero-bottom-note {
+  font: 600 8px var(--sans);
+  letter-spacing: 1.4px;
+}
+.intro-in {
+  animation: fade-in 1s 0.5s both;
+}
+/* Cinta tipográfica continua; el contenedor recorta el recorrido horizontal. */
+.marquee {
+  overflow: hidden;
+  background: var(--orange);
+  color: #f9f0dd;
+  padding: 16px 0;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 45px;
+  animation: marquee 32s linear infinite;
+}
+.marquee span {
+  font: 500 32px/1 var(--serif);
+  font-style: italic;
+}
+.marquee i {
+  font-size: 33px;
+  font-style: normal;
+}
+/* Espaciado común y cuadrícula de introducción a la colección. */
+.section-pad {
+  padding: 110px 6%;
+}
+.collection-intro {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 10%;
+  align-items: center;
+  padding-bottom: 115px;
+}
+/* Titulares editoriales, texto introductorio y enlaces de sección. */
+.display {
+  font: 500 clamp(55px, 5.6vw, 88px)/0.96 var(--serif);
+  letter-spacing: -2.5px;
+  margin: 0;
+}
+.display em {
+  color: var(--orange);
+}
+.intro-right {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  column-gap: 25px;
+  padding-top: 30px;
+  font-size: 12px;
+}
+.intro-right > p {
+  margin: 0 0 17px;
+  grid-column: 2;
+}
+.line-flower {
+  grid-column: 1;
+  grid-row: 1/4;
+  font-size: 63px;
+  color: var(--orange);
+  line-height: 1;
+}
+.text-link {
+  grid-column: 2;
+  display: inline-flex;
+  justify-content: space-between;
+  width: max-content;
+  gap: 35px;
+  border-bottom: 1px solid #233b3077;
+  padding: 8px 0;
+  font-size: 10px;
+}
+.text-link span {
+  font-size: 20px;
+}
+/* Cada producto ocupa una escena extensa con contenido adherido durante el desplazamiento. */
+.product-scene {
+  position: relative;
+  height: 125svh;
+  min-height: 880px;
+  color: var(--scene-ink);
+  background: var(--scene-bg);
+  isolation: isolate;
+}
+.scene-sticky {
+  height: 100svh;
+  min-height: 700px;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 38% 47% 15%;
+  align-items: center;
+  padding: 80px 6% 75px;
+}
+/* Texto, etiquetas y enlace de detalle de la bebida activa. */
+.scene-copy {
+  z-index: 4;
+  position: relative;
+  max-width: 390px;
+}
+.scene-copy .eyebrow {
+  font-size: 9px;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.scene-copy .eyebrow:before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+.scene-copy h2 {
+  font: 500 clamp(65px, 6.9vw, 108px)/0.85 var(--serif);
+  letter-spacing: -3px;
+  margin: 0 0 28px;
+}
+.scene-copy h2 em {
+  display: block;
+}
+.scene-description {
+  font-size: 12px;
+  max-width: 265px;
+  line-height: 1.9;
+  opacity: 0.8;
+}
+.scene-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 27px 0 34px;
+}
+.scene-tags span {
+  border: 1px solid currentColor;
+  border-radius: 30px;
+  padding: 6px 11px;
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  opacity: 0.7;
+}
+.scene-link {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  font-size: 11px;
+}
+.scene-link > span {
+  font-size: 22px;
+  transition: transform 0.3s;
+}
+.scene-link:hover > span {
+  transform: translate(4px, -4px);
+}
+/* Imagen del producto y modos de mezcla utilizados por las fotografías originales. */
+.scene-photo {
+  position: absolute;
+  width: 48%;
+  height: 90%;
+  left: 40%;
+  top: 5%;
+  will-change: transform;
+  z-index: 2;
+}
+.scene-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.scene-photo.soft-blend {
+  mix-blend-mode: multiply;
+}
+.scene-photo.dark-blend {
+  mix-blend-mode: lighten;
+}
+.scene-photo.gold-blend {
+  mask-image: radial-gradient(ellipse 57% 57% at 50% 50%, black 53%, transparent 92%);
+}
+/* Palabra de fondo, índice y referencias laterales de cada escena. */
+.scene-bg-word {
+  position: absolute;
+  top: 6%;
+  right: 1%;
+  font: 500 clamp(110px, 18vw, 280px)/1 var(--serif);
+  letter-spacing: -10px;
+  opacity: 0.075;
+  white-space: nowrap;
+  z-index: 1;
+  will-change: transform;
+}
+.scene-index {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  z-index: 3;
+}
+.scene-index .scene-line {
+  height: 1px;
+  background: currentColor;
+  opacity: 0.3;
+  flex: 1;
+}
+.scene-side {
+  position: absolute;
+  right: 4.5%;
+  top: 45%;
+  writing-mode: vertical-rl;
+  font: 500 8px var(--sans);
+  letter-spacing: 3px;
+  opacity: 0.6;
+}
+.scene-asterisk {
+  position: absolute;
+  right: 8%;
+  bottom: 17%;
+  font-size: 60px;
+  line-height: 1;
+  opacity: 0.7;
+  transform: rotate(calc(var(--p, 0) * 90deg));
+  will-change: transform;
+}
+/* Aparición escalonada de los textos al entrar una escena en la zona visible. */
+.scene-copy > * {
+  transition:
+    opacity 0.7s,
+    transform 0.9s;
+}
+.js .scene-copy > * {
+  opacity: 0;
+  transform: translateY(26px);
+}
+.js .product-scene.in-view .scene-copy > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scene-copy > *:nth-child(2) {
+  transition-delay: 0.08s;
+}
+.scene-copy > *:nth-child(3) {
+  transition-delay: 0.16s;
+}
+.scene-copy > *:nth-child(4) {
+  transition-delay: 0.24s;
+}
+.scene-copy > *:nth-child(5) {
+  transition-delay: 0.32s;
+}
+/* Sección del ritual: fotografía inclinada, descripción y pasos numerados. */
+.ritual {
+  background: #eae7da;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12%;
+  align-items: center;
+  padding-top: 140px;
+  padding-bottom: 145px;
+}
+.ritual-image-wrap {
+  position: relative;
+  max-width: 470px;
+  transform: rotate(-4deg);
+  margin: 20px 0 35px 25px;
+}
+.ritual-image {
+  aspect-ratio: 0.83;
+  overflow: hidden;
+  will-change: transform;
+}
+.ritual-image img {
+  height: 115%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.image-note {
+  display: block;
+  font: italic 25px var(--serif);
+  text-align: center;
+  margin-top: 19px;
+}
+.ritual-copy .display {
+  font-size: clamp(55px, 5vw, 78px);
+}
+.ritual-description {
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 25px 0 30px;
+}
+.ritual-steps > div {
+  display: flex;
+  gap: 23px;
+  align-items: center;
+  border-top: 1px solid #233b3025;
+  padding: 13px 0;
+}
+.ritual-steps > div > span {
+  font: italic 26px var(--serif);
+  color: var(--orange);
+}
+.ritual-steps p {
+  font-size: 12px;
+  margin: 0;
+}
+.ritual-steps small {
+  display: block;
+  font-size: 10px;
+  opacity: 0.6;
+  padding-top: 3px;
+}
+/* Cabecera del catálogo, filtros de categoría y contador de resultados. */
+.catalog {
+  padding-top: 120px;
+  padding-bottom: 125px;
+}
+.catalog-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 55px;
+}
+.catalog-heading > p {
+  font-size: 11px;
+  line-height: 1.9;
+  margin: 0;
+}
+.catalog .display {
+  font-size: clamp(52px, 5vw, 80px);
+}
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 0 28px;
+  border-bottom: 1px solid #233b3025;
+  margin-bottom: 35px;
+}
+.filter {
+  border: 1px solid #233b3025;
+  border-radius: 30px;
+  padding: 10px 18px;
+  background: transparent;
+  font-size: 10px;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+.filter:hover,
+.filter.is-active {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+.filter sup {
+  font-size: 7px;
+  margin-left: 5px;
+}
+.filter-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: #84a77b;
+  border-radius: 50%;
+  margin-left: 7px;
+}
+.catalog-count {
+  margin-left: auto;
+  font-size: 9px;
+  opacity: 0.6;
+}
+/* Cuadrícula de bebidas; los elementos ocultos dejan de ocupar espacio. */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 22px;
+}
+.product-card[hidden] {
+  display: none;
+}
+.product-card {
+  min-width: 0;
+  animation: card-in 0.65s both;
+}
+/* Tarjeta de producto: fotografía, categoría, indicador de apertura y metadatos. */
+.card-image-button {
+  width: 100%;
+  aspect-ratio: 0.79;
+  padding: 0;
+  border: 0;
+  background: var(--card-bg);
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+.card-image-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-image-button:hover img,
+.card-image-button:focus-visible img {
+  transform: scale(1.075) rotate(1.5deg);
+}
+.card-badge {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 4px 9px;
+  font-size: 7px;
+  letter-spacing: 0.6px;
+  border-radius: 20px;
+  z-index: 2;
+}
+.card-plus {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: var(--cream);
+  border-radius: 50%;
+  font-size: 22px;
+  transition:
+    transform 0.3s,
+    background 0.3s;
+}
+.card-image-button:hover .card-plus {
+  transform: rotate(90deg);
+  background: #e7b891;
+}
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.card-meta h3 {
+  font: 500 27px/1.05 var(--serif);
+  margin: 0;
+}
+.card-meta > span {
+  font-size: 8px;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+.card-category {
+  font-size: 8px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 7px 0 0;
+}
+/* Reglas heredadas del cierre promocional, conservadas aunque la sección ya no aparece. */
+.closing {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--cream);
+  text-align: center;
+  padding: 100px 5% 30px;
+  isolation: isolate;
+}
+.closing > .eyebrow {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+}
+.closing h2 {
+  font: 500 clamp(72px, 9vw, 145px)/0.9 var(--serif);
+  letter-spacing: -3.5px;
+  margin: 30px 0 40px;
+}
+.closing h2 em {
+  color: #e1a878;
+}
+.closing-flower {
+  position: absolute;
+  font-size: 600px;
+  line-height: 1;
+  right: -150px;
+  top: 40px;
+  color: #ffffff06;
+  z-index: -1;
+  will-change: transform;
+}
+.closing-foot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  letter-spacing: 1px;
+  padding-top: 100px;
+}
+.closing-foot a {
+  font-size: 10px;
+  letter-spacing: 0;
+}
+/* Pie institucional y aviso de consumo responsable; refinements.css mejora su legibilidad. */
+.site-footer {
+  padding: 38px 4.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 35px;
+}
+.footer-brand {
+  font: italic 500 45px var(--serif);
+  letter-spacing: -2px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.footer-brand span {
+  color: var(--orange);
+  font: 40px var(--sans);
+}
+.site-footer p {
+  margin: 0;
+  font-size: 10px;
+}
+.site-footer .responsible {
+  font-size: 8px;
+  opacity: 0.6;
+  margin-top: 6px;
+}
+.site-footer > span {
+  font-size: 7px;
+  letter-spacing: 1px;
+}
+/* Diálogo nativo de detalle, con fondo modal y distribución en dos columnas. */
+.product-dialog {
+  border: 0;
+  padding: 0;
+  max-width: 900px;
+  width: 90vw;
+  max-height: 90svh;
+  border-radius: 3px;
+  background: var(--cream);
+  color: var(--ink);
+  overflow: auto;
+  box-shadow: 0 30px 90px #0003;
+}
+.product-dialog[open] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  animation: dialog-in 0.35s ease;
+}
+.product-dialog::backdrop {
+  background: #142219bb;
+  backdrop-filter: blur(10px);
+}
+.dialog-close {
+  position: absolute;
+  right: 13px;
+  top: 10px;
+  border: 0;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  background: var(--cream);
+  font: 29px/1 var(--sans);
+  z-index: 2;
+}
+/* Fotografía del detalle y miniaturas seleccionables. */
+.dialog-image {
+  position: relative;
+  background: #e2d5b8;
+  min-height: 530px;
+}
+.dialog-image > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+.dialog-thumbs {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.dialog-thumbs button {
+  width: 45px;
+  height: 56px;
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid #fff7;
+  background: #000;
+}
+.dialog-thumbs button[aria-pressed='true'] {
+  border-color: #fff;
+  transform: translateY(-4px);
+}
+.dialog-thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Información de la bebida, recomendaciones de servicio y acción para añadirla al pedido. */
+.dialog-copy {
+  padding: 65px 38px 35px;
+  align-self: center;
+}
+.dialog-copy .eyebrow {
+  font-size: 8px;
+  margin-bottom: 20px;
+}
+.dialog-copy h2 {
+  font: 500 58px/0.9 var(--serif);
+  letter-spacing: -1px;
+  margin: 0 0 25px;
+}
+.dialog-copy > p:not(.eyebrow) {
+  font-size: 12px;
+  line-height: 1.9;
+}
+.detail-meta {
+  display: flex;
+  gap: 10px;
+  margin: 23px 0;
+}
+.detail-meta span {
+  border: 1px solid #233b3038;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 9px;
+}
+.serving-note {
+  display: flex;
+  gap: 15px;
+  border-top: 1px solid #233b3025;
+  padding: 22px 0;
+  font-size: 11px;
+}
+.serving-note > span {
+  font-size: 28px;
+  color: var(--orange);
+  line-height: 1;
+}
+.serving-note p {
+  font-size: 10px;
+  opacity: 0.7;
+  line-height: 1.7;
+  margin: 4px 0 0;
+}
+.dialog-back {
+  width: 100%;
+  margin-top: 15px;
+}
+/* Efecto de cursor anterior y revelado general de elementos al desplazarse. */
+.cursor-glow {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+  mix-blend-mode: difference;
+}
+.js .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.js .ritual-image-wrap.reveal.is-visible {
+  transform: rotate(-4deg);
+}
+/* Animación: Entrada vertical del título hasta su posición de lectura. */
+@keyframes line-in {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* Animación: Entrada suave de los elementos de presentación. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Animación: Entrada con pequeño giro de la composición anterior de botella. */
+@keyframes hero-photo-in {
+  from {
+    opacity: 0;
+    translate: 0 50px;
+    rotate: 5deg;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+  }
+}
+/* Animación: Giro continuo del sello circular decorativo. */
+@keyframes rotate-stamp {
+  to {
+    rotate: 360deg;
+  }
+}
+/* Animación: Pulso discreto de los destellos. */
+@keyframes sparkle {
+  50% {
+    transform: scale(0.7) rotate(15deg);
+    opacity: 0.45;
+  }
+}
+/* Animación: Movimiento breve de la indicación de desplazamiento. */
+@keyframes bounce {
+  50% {
+    transform: translateY(6px);
+  }
+}
+/* Animación: Recorrido de media cinta para unir sus dos repeticiones sin salto. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+/* Animación: Aparición de las tarjetas al cambiar los filtros del catálogo. */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Animación: Entrada del diálogo de detalle con escala y desplazamiento moderados. */
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* Pantallas amplias: limita o amplía espacios y elementos para mantener una composición proporcionada. */
+@media (min-width: 1650px) {
+  .hero {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+  .hero h1 {
+    font-size: 145px;
+  }
+  .hero-copy {
+    padding-bottom: 25px;
+  }
+  .hero-photo {
+    width: 78%;
+  }
+  .section-pad {
+    padding-left: 9%;
+    padding-right: 9%;
+  }
+}
+/* Escritorio compacto: reduce espacios y ajusta títulos, columnas y controles antes del salto a móvil. */
+@media (max-width: 1100px) {
+  .site-header {
+    padding: 0 5%;
+    height: 90px;
+  }
+  .desktop-nav {
+    gap: 18px;
+    font-size: 10px;
+  }
+  .header-cta {
+    font-size: 10px;
+    gap: 15px;
+  }
+  .hero {
+    min-height: 760px;
+    padding-top: 130px;
+  }
+  .hero h1 {
+    font-size: 90px;
+    letter-spacing: -4px;
+  }
+  .hero-photo {
+    width: 100%;
+    left: 0;
+  }
+  .hero-outline {
+    font-size: 430px;
+    top: 8%;
+  }
+  .orbit-stamp {
+    width: 110px;
+    height: 110px;
+    right: -6%;
+  }
+  .hero-bottom-note {
+    display: none;
+  }
+  .section-pad {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .scene-sticky {
+    grid-template-columns: 40% 50% 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .scene-copy h2 {
+    font-size: 80px;
+  }
+  .scene-photo {
+    width: 53%;
+    left: 40%;
+    height: 83%;
+    top: 9%;
+  }
+  .ritual {
+    gap: 8%;
+  }
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .site-footer > span {
+    display: none;
+  }
+}
+/* Móvil: apila los bloques y adapta tipografía, imágenes, separación y controles al ancho disponible. */
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 20px;
+  }
+  .site-header {
+    height: 86px;
+    padding: 0 6%;
+    gap: 15px;
+  }
+  .brand-flower {
+    font-size: 38px;
+  }
+  .brand > span:last-child {
+    font-size: 36px;
+  }
+  .brand small {
+    font-size: 6px;
+    letter-spacing: 1.3px;
+    margin-top: 8px;
+  }
+  .desktop-nav,
+  .header-cta {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    border: 1px solid #233b3033;
+    border-radius: 50%;
+    background: transparent;
+    z-index: 35;
+  }
+  .menu-toggle span {
+    display: block;
+    height: 1px;
+    width: 22px;
+    background: currentColor;
+    transition: transform 0.25s;
+  }
+  .menu-toggle[aria-expanded='true'] span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded='true'] span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+  .mobile-nav:not([hidden]) {
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: var(--cream);
+    padding: 110px 6% 35px;
+    gap: 20px;
+    flex-direction: column;
+    box-shadow: 0 12px 20px #233b3014;
+  }
+  .mobile-nav a {
+    font: 500 30px var(--serif);
+    padding-bottom: 12px;
+    border-bottom: 1px solid #233b301a;
+  }
+  .hero {
+    height: auto;
+    min-height: 940px;
+    max-height: none;
+    padding: 120px 6% 90px;
+    display: block;
+  }
+  .hero-copy {
+    position: relative;
+    z-index: 4;
+    max-width: 450px;
+  }
+  .hero .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.6px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(67px, 13.6vw, 100px);
+    letter-spacing: -3px;
+    margin: 22px 0;
+  }
+  .hero-description {
+    font-size: 11px;
+    line-height: 1.8;
+    margin: 22px 0;
+  }
+  .hero .pill {
+    padding: 15px 19px;
+    font-size: 10px;
+    min-height: 48px;
+  }
+  .hero-art {
+    height: 480px;
+    margin-top: -47px;
+    width: 80%;
+    margin-left: 23%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero-photo {
+    width: 100%;
+    height: 105%;
+    top: -4%;
+    left: 0;
+  }
+  .hero-halo {
+    width: 90%;
+    top: 15%;
+    left: 8%;
+    filter: blur(25px);
+  }
+  .hero-outline {
+    font-size: 360px;
+    top: -4%;
+    right: -6%;
+    z-index: -1;
+  }
+  .orbit-stamp {
+    width: 95px;
+    height: 95px;
+    right: -1%;
+    top: 12%;
+  }
+  .orbit-stamp > span {
+    font-size: 43px;
+  }
+  .spark-one {
+    font-size: 42px;
+    left: -6%;
+    top: 37%;
+  }
+  .spark-two {
+    right: 3%;
+    bottom: 25%;
+    font-size: 30px;
+  }
+  .hero-caption {
+    font-size: 6px;
+    letter-spacing: 0.4px;
+    left: 0;
+    bottom: 0;
+    right: 10%;
+    gap: 5px;
+  }
+  .hero-caption > span:last-child {
+    font-size: 7px;
+  }
+  .hero-bottom {
+    left: 6%;
+    right: 6%;
+    bottom: 22px;
+    padding-top: 16px;
+    font-size: 8px;
+  }
+  .hero-bottom > span:first-child {
+    max-width: 120px;
+    line-height: 1.7;
+  }
+  .hero-bottom > a {
+    max-width: 160px;
+    gap: 9px;
+    line-height: 1.7;
+  }
+  .down-arrow {
+    font-size: 20px;
+  }
+  .marquee {
+    padding: 13px 0;
+  }
+  .marquee-track {
+    gap: 27px;
+  }
+  .marquee span {
+    font-size: 26px;
+  }
+  .marquee i {
+    font-size: 25px;
+  }
+  .section-pad {
+    padding: 75px 6%;
+  }
+  .collection-intro {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.8px;
+    margin-bottom: 23px;
+  }
+  .display {
+    font-size: 61px;
+    letter-spacing: -2px;
+  }
+  .intro-right {
+    padding-top: 5px;
+    grid-template-columns: 45px 1fr;
+    column-gap: 22px;
+    font-size: 11px;
+  }
+  .line-flower {
+    font-size: 48px;
+  }
+  .text-link {
+    font-size: 9px;
+  }
+  .product-scene {
+    height: 120svh;
+    min-height: 900px;
+  }
+  .scene-sticky {
+    height: 100svh;
+    min-height: 740px;
+    display: block;
+    padding: 50px 6% 70px;
+  }
+  .scene-copy {
+    max-width: none;
+    position: relative;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .scene-copy .eyebrow {
+    font-size: 8px;
+    margin-bottom: 18px;
+    letter-spacing: 1.6px;
+  }
+  .scene-copy h2 {
+    font-size: 65px;
+    letter-spacing: -2px;
+    margin: 0 0 15px;
+    max-width: 75%;
+  }
+  .scene-copy h2 em {
+    display: inline;
+  }
+  .scene-description {
+    font-size: 10px;
+    max-width: 220px;
+    line-height: 1.8;
+    margin-bottom: 0;
+  }
+  .scene-tags {
+    margin: 15px 0;
+    gap: 6px;
+    max-width: 220px;
+  }
+  .scene-tags span {
+    font-size: 7px;
+    padding: 4px 9px;
+  }
+  .scene-link {
+    font-size: 10px;
+    gap: 24px;
+    padding: 7px 0;
+    pointer-events: auto;
+  }
+  .scene-photo {
+    width: 85%;
+    height: 63%;
+    top: auto;
+    bottom: 2%;
+    left: 16%;
+    z-index: 2;
+  }
+  .scene-photo img {
+    object-fit: contain;
+  }
+  .scene-bg-word {
+    font-size: 135px;
+    top: 43%;
+    right: -4%;
+    letter-spacing: -6px;
+  }
+  .scene-side {
+    right: 5%;
+    top: 57%;
+    font-size: 6px;
+    letter-spacing: 2px;
+  }
+  .scene-asterisk {
+    right: auto;
+    left: 7%;
+    bottom: 20%;
+    font-size: 40px;
+  }
+  .scene-index {
+    left: 6%;
+    right: 6%;
+    bottom: 22px;
+    font-size: 7px;
+    gap: 12px;
+  }
+  .scene-index > span:last-child {
+    max-width: 130px;
+    text-align: right;
+  }
+  .ritual {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    padding-top: 85px;
+    padding-bottom: 80px;
+  }
+  .ritual-image-wrap {
+    max-width: 400px;
+    width: 85%;
+    margin: 5px auto 15px;
+  }
+  .ritual-image {
+    aspect-ratio: 0.95;
+  }
+  .image-note {
+    font-size: 23px;
+  }
+  .ritual-copy .display {
+    font-size: 60px;
+  }
+  .ritual-description {
+    font-size: 11px;
+  }
+  .ritual-steps > div {
+    padding: 14px 0;
+  }
+  .catalog-heading {
+    display: block;
+    margin-bottom: 30px;
+  }
+  .catalog .display {
+    font-size: 56px;
+  }
+  .catalog-heading > p {
+    font-size: 10px;
+    margin-top: 22px;
+  }
+  .filter-bar {
+    gap: 6px;
+    flex-wrap: wrap;
+    position: relative;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+  }
+  .filter {
+    font-size: 9px;
+    padding: 9px 12px;
+  }
+  .catalog-count {
+    width: 100%;
+    margin-left: 0;
+    font-size: 8px;
+    margin-top: 8px;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 13px;
+  }
+  .card-meta {
+    display: block;
+    margin-top: 13px;
+  }
+  .card-meta h3 {
+    font-size: 24px;
+  }
+  .card-meta > span {
+    font-size: 8px;
+    display: block;
+    margin-top: 7px;
+  }
+  .card-category {
+    font-size: 7px;
+    letter-spacing: 0.6px;
+    margin-top: 5px;
+  }
+  .card-badge {
+    font-size: 6px;
+    top: 9px;
+    left: 9px;
+    padding: 3px 7px;
+  }
+  .card-plus {
+    width: 29px;
+    height: 29px;
+    font-size: 20px;
+    right: 9px;
+    bottom: 9px;
+  }
+  .closing {
+    padding: 75px 6% 25px;
+  }
+  .closing h2 {
+    font-size: 69px;
+    letter-spacing: -2.5px;
+    margin: 30px 0 35px;
+  }
+  .closing > .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+  .closing .pill {
+    font-size: 10px;
+    gap: 25px;
+  }
+  .closing-flower {
+    font-size: 400px;
+    right: -180px;
+    top: 60px;
+  }
+  .closing-foot {
+    padding-top: 75px;
+    font-size: 6px;
+    letter-spacing: 0.5px;
+    gap: 20px;
+    align-items: center;
+  }
+  .closing-foot a {
+    font-size: 9px;
+    white-space: nowrap;
+  }
+  .site-footer {
+    padding: 30px 6%;
+    display: block;
+  }
+  .footer-brand {
+    font-size: 43px;
+    margin-bottom: 18px;
+  }
+  .footer-brand span {
+    font-size: 35px;
+  }
+  .site-footer p {
+    font-size: 9px;
+  }
+  .site-footer .responsible {
+    font-size: 7px;
+    line-height: 1.8;
+    max-width: 300px;
+  }
+  .product-dialog {
+    width: 92vw;
+    max-height: 90svh;
+  }
+  .product-dialog[open] {
+    display: block;
+  }
+  .dialog-image {
+    min-height: 310px;
+    height: 40svh;
+    max-height: 390px;
+  }
+  .dialog-image > img {
+    object-position: center 48%;
+  }
+  .dialog-copy {
+    padding: 33px 25px 30px;
+  }
+  .dialog-copy h2 {
+    font-size: 50px;
+  }
+  .dialog-copy > p:not(.eyebrow) {
+    font-size: 11px;
+  }
+  .dialog-thumbs button {
+    width: 35px;
+    height: 43px;
+  }
+  .serving-note {
+    padding: 17px 0;
+  }
+  .cursor-glow {
+    display: none;
+  }
+}
+/* Pantallas de poca altura: reduce las dimensiones verticales para conservar el contenido y sus acciones visibles. */
+@media (max-height: 740px) and (min-width: 761px) {
+  .hero {
+    min-height: 740px;
+  }
+  .hero h1 {
+    font-size: 90px;
+  }
+  .scene-sticky {
+    min-height: 650px;
+  }
+  .product-scene {
+    min-height: 810px;
+  }
+  .scene-copy h2 {
+    font-size: 78px;
+  }
+}
+/* Accesibilidad: reduce o detiene el movimiento cuando lo solicita el sistema, salvo activación expresa del usuario. */
+@media (prefers-reduced-motion: reduce) {
+  html:not(.motion-enabled) {
+    scroll-behavior: auto;
+  }
+  html:not(.motion-enabled) *,
+  html:not(.motion-enabled) *:before,
+  html:not(.motion-enabled) *:after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html:not(.motion-enabled) .reveal,
+  html:not(.motion-enabled) .scene-copy > * {
+    opacity: 1;
+    transform: none;
+  }
+  html:not(.motion-enabled) .hero-photo,
+  html:not(.motion-enabled) .parallax,
+  html:not(.motion-enabled) .scene-photo,
+  html:not(.motion-enabled) .scene-bg-word {
+    transform: none !important;
+  }
+  html:not(.motion-enabled) .product-scene {
+    height: auto;
+    min-height: 0;
+  }
+  html:not(.motion-enabled) .scene-sticky {
+    position: relative;
+  }
+  html:not(.motion-enabled) .cursor-glow {
+    display: none;
+  }
+}
+/* Ajustes finales de desbordamiento y contraste, aplicados después de las reglas base y móviles. */
+html {
+  overflow-x: clip;
+}
+.hero {
+  overflow: clip;
+}
+.card-meta > span,
+.card-category,
+.catalog-count,
+.site-footer .responsible {
+  opacity: 0.8;
+}
+.scene-description,
+.scene-tags span,
+.scene-index,
+.scene-side {
+  opacity: 1;
+}
+.scene-side {
+  opacity: 0.92;
+}
+.card-meta h3::first-letter {
+  text-transform: uppercase;
+}
+/* Control global de movimiento; el estado motion-paused detiene animaciones y transformaciones. */
+.motion-toggle {
+  position: fixed;
+  z-index: 25;
+  right: 16px;
+  bottom: 12px;
+  border: 1px solid #233b3030;
+  background: #f5f0e6ed;
+  color: #233b30;
+  border-radius: 30px;
+  padding: 7px 12px;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 9px;
+  box-shadow: 0 2px 15px #0000000a;
+  backdrop-filter: blur(8px);
+}
+.motion-toggle > span:first-child {
+  font-size: 16px;
+  line-height: 1;
+}
+.motion-paused *,
+.motion-paused *:before,
+.motion-paused *:after {
+  animation-play-state: paused !important;
+}
+.motion-paused .hero-photo,
+.motion-paused .parallax,
+.motion-paused .scene-photo,
+.motion-paused .scene-bg-word {
+  transform: none !important;
+}
+.motion-paused .cursor-glow {
+  display: none;
+}
+.motion-paused .hero h1 > span,
+.motion-paused .intro-in,
+.motion-paused .hero-photo {
+  animation: none !important;
+  opacity: 1;
+}
+.motion-paused {
+  scroll-behavior: auto;
+}
+.motion-paused .reveal,
+.motion-paused .scene-copy > * {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+/* Móvil: apila los bloques y adapta tipografía, imágenes, separación y controles al ancho disponible. */
+@media (max-width: 760px) {
+  .motion-toggle {
+    font-size: 8px;
+    right: 10px;
+    bottom: 10px;
+    padding: 6px 10px;
+  }
+}
+/* Móvil: apila los bloques y adapta tipografía, imágenes, separación y controles al ancho disponible. */
+@media (max-width: 760px) {
+  .scene-sticky {
+    min-height: 800px;
+  }
+  .scene-copy h2 {
+    font-size: 56px;
+    max-width: 100%;
+    line-height: 0.9;
+  }
+  .scene-description {
+    max-width: 265px;
+  }
+  .scene-photo {
+    height: 50%;
+    bottom: 4%;
+    width: 85%;
+    left: 14%;
+  }
+  .scene-bg-word {
+    top: 43%;
+  }
+}

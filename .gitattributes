@@ -1,0 +1,16 @@
+# Texto legible y saltos de línea uniformes al trabajar en distintos sistemas.
+* text=auto
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.svg text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Los recursos gráficos se conservan como archivos binarios.
+*.png binary
+*.webp binary
+*.jpg binary

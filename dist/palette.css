@@ -1,0 +1,601 @@
+/* Paleta final: negro, luz roja y reflejos violetas sobre las capas base, liquid, interface y contact.
+ * La cascada mantiene separados los componentes y sus colores. product-colors.css recupera después el acento propio de cada bebida.
+ */
+
+/* Variables definitivas de color y superficies negras de la página. */
+:root {
+  --cream: #000;
+  --ink: #fff;
+  --orange: #ff3f6c;
+  --accent: #ff3f6c;
+  --lime: #d0a6ff;
+}
+body {
+  background: #000;
+  color: #fff;
+}
+.site-header {
+  background: linear-gradient(#000c, transparent);
+}
+.mobile-nav:not([hidden]) {
+  background: #000f;
+}
+.glass-vignette {
+  background: radial-gradient(ellipse at 50% 48%, transparent 35%, #000b);
+}
+.hero:before {
+  background:
+    radial-gradient(ellipse 37% 57% at 73% 55%, #bb154233, transparent 78%),
+    linear-gradient(90deg, #000b, transparent 65%);
+}
+/* Titulares de portada con serif editorial, mayúsculas y acento rojo. */
+.hero h1 {
+  font: 500 clamp(76px, 7.8vw, 130px)/0.86 var(--serif);
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  margin: 36px 0 30px;
+}
+.hero h1 > span:last-child {
+  font: italic 500 clamp(88px, 8.1vw, 140px)/0.87 var(--serif);
+  letter-spacing: -0.035em;
+  margin-top: 9px;
+}
+.hero h1 em {
+  font-size: 1em;
+  color: #ff3f6c;
+}
+/* Tratamiento claro inicial de las acciones; la regla final de este archivo aplica el violeta definitivo. */
+.hero .pill-dark,
+.closing .pill,
+.detail-order,
+.contact-primary {
+  background: #fff;
+  color: #000;
+  box-shadow: none;
+}
+.hero .pill-dark:hover,
+.closing .pill:hover,
+.detail-order:hover,
+.contact-primary:hover {
+  background: #fff;
+  box-shadow: 0 0 38px #fff2;
+}
+.hero-explore span {
+  color: #d0a6ff;
+}
+/* Jerarquía tipográfica definitiva de titulares y escenas de producto. */
+.display {
+  font: 500 clamp(57px, 5.5vw, 88px)/0.95 var(--serif);
+  letter-spacing: -0.035em;
+}
+.display em {
+  font-size: 1em;
+  line-height: 0.95;
+  color: #cf9aff;
+}
+.scene-copy h2 {
+  font: 500 clamp(66px, 7vw, 108px)/0.86 var(--serif);
+  letter-spacing: -0.035em;
+}
+.scene-copy h2 em {
+  font: italic 500 1em/0.9 var(--serif);
+  letter-spacing: -0.025em;
+}
+/* Capas de lectura, secciones transparentes y tarjetas del catálogo sobre negro. */
+.scene-sticky {
+  background: linear-gradient(90deg, #000c, transparent 75%);
+}
+.ritual,
+.contact-section,
+.catalog {
+  background: transparent;
+  backdrop-filter: none;
+}
+.marquee {
+  background: #000b;
+}
+.ritual-copy .display,
+.catalog .display {
+  font-size: clamp(56px, 5vw, 80px);
+}
+.extra-product-art {
+  background: #000;
+  border-color: #ffffff35;
+}
+.card-image-button {
+  background:
+    radial-gradient(
+      ellipse at 50% 60%,
+      color-mix(in srgb, var(--accent), transparent 94%),
+      transparent 80%
+    ),
+    #000;
+}
+.card-image-button:before {
+  opacity: 0.7;
+}
+.card-meta h3 {
+  font: 500 28px/1.05 var(--serif);
+  letter-spacing: -0.7px;
+}
+/* Filtros y variantes sin alcohol, con acentos violetas consistentes. */
+.filter {
+  background: #000;
+}
+.filter.is-active {
+  background: #fff;
+  color: #000;
+}
+.filter-dot {
+  background: #d0a6ff;
+}
+.extra-product[data-category='sangria soda'] {
+  --accent: #c596ff !important;
+}
+.extra-word {
+  font: 500 clamp(34px, 3.5vw, 55px)/1 var(--serif);
+  letter-spacing: -0.03em;
+}
+.extra-word em {
+  font-size: 0.85em;
+}
+/* Contacto y horarios con contraste claro y estados de apertura. */
+.contact-heading .display {
+  font-size: clamp(56px, 5.5vw, 86px);
+}
+.contact-socials b {
+  color: #d0a6ff;
+}
+.hours-card {
+  background: #000;
+  border-color: #ca9aff44;
+}
+.hours-top {
+  border-bottom-color: #ca9aff33;
+}
+.hours-top p,
+.hours-top > span:last-child {
+  color: #e3d8ee;
+}
+.status-dot {
+  background: #ff7b9c;
+}
+.is-open .status-dot {
+  background: #d0a6ff;
+  box-shadow: 0 0 12px #c596ff55;
+}
+.is-open .hours-top p {
+  color: #e4ccff;
+}
+.hours-card h3 {
+  font: 500 46px/0.95 var(--serif);
+  letter-spacing: -1.5px;
+}
+.hours-card h3 em {
+  font-size: 1em;
+  color: #d0a6ff;
+}
+.hours-list dt,
+.hours-note,
+.business-tags span {
+  color: #ddd1e8;
+}
+.business-tags span {
+  border-color: #ca9aff33;
+}
+/* Compatibilidad cromática del banner social y cierre anteriores, conservados sin mostrarlos. */
+.instagram-banner {
+  background: #000;
+  color: #fff;
+  border-top: 1px solid #ca9aff55;
+  border-bottom: 1px solid #ff3f6c55;
+}
+.instagram-kicker {
+  color: #cf9aff;
+}
+.instagram-handle {
+  color: #ff6e96;
+}
+.instagram-handle > span {
+  color: #cf9aff;
+}
+.closing {
+  background: radial-gradient(ellipse at 50% 80%, #540b2940, transparent 65%);
+}
+.closing h2 {
+  font: 500 clamp(74px, 9.3vw, 150px)/0.88 var(--serif);
+  letter-spacing: -0.035em;
+}
+.closing h2 em {
+  font: italic 500 1em/0.9 var(--serif);
+  color: #cf9aff;
+  letter-spacing: -0.03em;
+}
+/* Pie institucional y detalle de producto con fondo negro. */
+.site-footer {
+  background: #000;
+  padding-bottom: 135px;
+}
+.product-dialog,
+.dialog-close {
+  background: #000;
+}
+.detail-meta span {
+  border-color: #fff5;
+}
+.dialog-image {
+  background:
+    radial-gradient(
+      ellipse at 50% 55%,
+      color-mix(in srgb, var(--accent), transparent 87%),
+      transparent 74%
+    ),
+    #000;
+}
+.dialog-thumbs button {
+  background: #000;
+}
+/* Formulario de pedido: foco violeta, campos oscuros y miniaturas con acento por bebida. */
+.order-dialog {
+  background: #000;
+  border-color: #c596ff44;
+  scrollbar-color: #b982df #000;
+}
+.order-dialog::backdrop {
+  background: #000d;
+}
+.order-topline {
+  background: #000e;
+  color: #e2d7eb;
+}
+.order-dialog :is(button, a, input, textarea):focus-visible {
+  outline-color: #d0a6ff;
+}
+.order-kicker {
+  color: #d0a6ff;
+}
+.order-heading h2 {
+  font: 500 clamp(43px, 5vw, 68px)/0.96 var(--serif);
+  letter-spacing: -1.7px;
+}
+.order-heading h2 em {
+  font-size: 1em;
+  color: #ff779c;
+}
+.order-product.is-selected .order-product-copy label {
+  color: var(--order-accent);
+}
+.order-stepper {
+  background: #000;
+  border-color: #ca9aff55;
+}
+.order-stepper button {
+  color: #e7d4ff;
+}
+.order-stepper button:hover:not(:disabled) {
+  background: #d0a6ff;
+  color: #000;
+}
+.order-stepper button:disabled {
+  color: #fff;
+  opacity: 0.35;
+}
+.order-personalize :is(input, textarea) {
+  background: #000;
+  border-color: #ca9aff55;
+}
+.order-personalize label span,
+.order-note-count,
+.order-list-heading > span,
+.order-product-copy > span {
+  color: #d4c8dd;
+}
+/* Resumen y mensaje de WhatsApp sobre negro, con etiquetas violetas. */
+.order-summary {
+  background: #000;
+}
+.order-message {
+  background: #000;
+  border-color: #ca9aff66;
+  box-shadow: 0 0 35px #7c2bad12;
+}
+.order-message-brand,
+.order-message-check,
+.order-summary-count,
+.order-summary h3 em {
+  color: #d0a6ff;
+}
+.order-availability,
+.order-social > span,
+.order-handoff {
+  color: #d2c4df;
+}
+/* Acciones de envío y cierre con estados habilitados, deshabilitados y de interacción. */
+.order-actions {
+  background: #000f;
+  border-top-color: #ca9aff44;
+}
+.order-whatsapp {
+  background: #fff;
+  color: #000;
+}
+.order-whatsapp:hover {
+  background: #fff;
+  box-shadow: 0 0 28px #fff2;
+}
+.order-whatsapp[aria-disabled='true'] {
+  background: #000;
+  color: #bdb3c7;
+  border: 1px solid #ffffff40;
+}
+.order-close {
+  background: #000;
+  color: #fff;
+}
+.order-close:hover {
+  background: #000;
+  border-color: #cf9aff;
+}
+/* Control compacto de movimiento; su etiqueta sigue disponible de forma accesible. */
+.motion-toggle {
+  background: #000;
+  color: #fff;
+  box-shadow: none;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  padding: 0;
+  bottom: max(26px, env(safe-area-inset-bottom));
+  border-color: #ffffff25;
+}
+.motion-toggle .motion-label {
+  display: none;
+}
+.motion-toggle > span:first-child {
+  font-size: 20px;
+}
+/* Acceso flotante definitivo: centrado, blanco y con icono y contador negros. */
+html .contact-float,
+html.motion-paused .contact-float,
+html.motion-paused .contact-float:hover {
+  position: fixed;
+  left: 50%;
+  right: auto;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  min-height: 62px;
+  min-width: 234px;
+  justify-content: center;
+  gap: 15px;
+  padding: 17px 26px;
+  border: 1px solid #fff;
+  border-radius: 50px;
+  background: #fff;
+  color: #000;
+  box-shadow:
+    0 0 0 5px #ffffff06,
+    0 0 38px #ffffff1f,
+    0 12px 35px #000a;
+  backdrop-filter: none;
+  white-space: nowrap;
+}
+html:not(.motion-paused) .contact-float:hover {
+  transform: translate(-50%, -3px);
+  box-shadow:
+    0 0 0 7px #ffffff0a,
+    0 0 48px #ffffff35,
+    0 14px 40px #000a;
+}
+.contact-float:focus-visible {
+  outline: 2px solid #cf9aff;
+  outline-offset: 7px;
+}
+/* El icono pierde su círculo previo y el contador queda integrado en la misma píldora. */
+.contact-float-icon {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  background: transparent;
+  color: #000;
+  border-radius: 0;
+}
+.contact-float-icon svg {
+  width: 25px;
+  height: 25px;
+}
+.contact-float-label {
+  font: 800 12px/1 var(--sans);
+  letter-spacing: 1.55px;
+  text-transform: uppercase;
+  color: #000;
+}
+.contact-float-label small,
+.contact-float-arrow {
+  display: none;
+}
+.contact-float-count {
+  background: transparent;
+  color: #000;
+  border-left: 1px solid #0004;
+  border-radius: 0;
+  min-width: 24px;
+  height: 20px;
+  padding: 0 0 0 14px;
+  font: 800 12px/1 var(--sans);
+}
+/* Burbujas blancas semitransparentes que respetan el tratamiento monocromático del botón. */
+.contact-bubbles {
+  color: #fff;
+}
+.contact-bubbles i {
+  border-color: #ffffffb0;
+  background: radial-gradient(
+    circle at 28% 25%,
+    #fff 0 4%,
+    #ffffff28 18%,
+    #ffffff0d 55%,
+    #ffffff3d 80%
+  );
+  box-shadow: inset -2px -3px 5px #ffffff20;
+  bottom: 30px;
+}
+/* Escritorio compacto: reduce espacios y ajusta títulos, columnas y controles antes del salto a móvil. */
+@media (max-width: 1100px) {
+  .hero h1 {
+    font-size: clamp(75px, 7.5vw, 104px);
+  }
+  .hero h1 > span:last-child {
+    font-size: clamp(84px, 8.4vw, 118px);
+  }
+  .scene-copy h2 {
+    font-size: 80px;
+  }
+  .contact-heading .display {
+    font-size: 68px;
+  }
+}
+/* Móvil: apila los bloques y adapta tipografía, imágenes, separación y controles al ancho disponible. */
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: clamp(54px, 13.8vw, 92px);
+    line-height: 0.86;
+    letter-spacing: -0.04em;
+    margin: 30px 0;
+  }
+  .hero h1 > span:last-child {
+    font-size: clamp(61px, 15.2vw, 105px);
+    line-height: 0.88;
+    margin-top: 7px;
+  }
+  .hero-art {
+    margin-top: 18px;
+  }
+  .display,
+  .ritual-copy .display,
+  .catalog .display {
+    font-size: 58px;
+    letter-spacing: -0.03em;
+  }
+  .display em {
+    font-size: 1em;
+  }
+  .scene-copy h2 {
+    font-size: 55px;
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+  }
+  .scene-copy h2 em {
+    font-size: 1em;
+    line-height: 0.92;
+  }
+  .card-meta h3 {
+    font-size: 25px;
+  }
+  .contact-heading .display {
+    font-size: 59px;
+  }
+  .hours-card h3 {
+    font-size: 43px;
+  }
+  .closing h2 {
+    font-size: 71px;
+    line-height: 0.88;
+  }
+  .closing h2 em {
+    font-size: 1em;
+  }
+  .order-heading h2 {
+    font-size: 49px;
+  }
+  .order-heading h2 em {
+    font-size: 1em;
+  }
+  .motion-toggle {
+    left: 12px;
+    right: auto;
+    width: 28px;
+    height: 28px;
+    bottom: calc(29px + env(safe-area-inset-bottom, 0px));
+  }
+  .motion-toggle .motion-label {
+    display: none;
+  }
+  .site-footer {
+    padding-bottom: 135px;
+  }
+  html .contact-float,
+  html.motion-paused .contact-float,
+  html.motion-paused .contact-float:hover {
+    left: 50%;
+    right: auto;
+    min-width: 222px;
+    min-height: 58px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    padding: 16px 23px;
+    gap: 13px;
+    transform: translateX(-50%);
+  }
+  .contact-float-icon,
+  .contact-float-icon svg {
+    width: 23px;
+    height: 23px;
+  }
+  .contact-float-label {
+    font-size: 11px;
+    letter-spacing: 1.3px;
+  }
+  .contact-float-count {
+    height: 18px;
+    min-width: 22px;
+    font-size: 11px;
+    padding-left: 12px;
+  }
+}
+/* Pantallas muy estrechas: reduce los espacios secundarios sin ocultar la información ni las acciones esenciales. */
+@media (max-width: 370px) {
+  .hero h1 {
+    font-size: 51px;
+  }
+  .hero h1 > span:last-child {
+    font-size: 58px;
+  }
+  .contact-heading .display {
+    font-size: 55px;
+  }
+  .motion-toggle {
+    left: 7px;
+    width: 24px;
+    height: 28px;
+  }
+  .contact-float-label {
+    font-size: 10px;
+  }
+  html .contact-float {
+    min-width: 207px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+/* Accesibilidad: reduce o detiene el movimiento cuando lo solicita el sistema, salvo activación expresa del usuario. */
+@media (prefers-reduced-motion: reduce) {
+  html:not(.motion-enabled) .contact-float,
+  html:not(.motion-enabled) .contact-float:hover {
+    transform: translateX(-50%);
+  }
+}
+/* Último ajuste de cascada: secciones transparentes y acciones principales violetas; el contacto flotante conserva el blanco. */
+.collection-intro {
+  background: transparent;
+}
+.hero .pill-dark,
+.hero .pill-dark:hover,
+.contact-primary,
+.contact-primary:hover,
+.closing .pill,
+.closing .pill:hover,
+.detail-order,
+.detail-order:hover {
+  background: #d2acff;
+  color: #000;
+  box-shadow: none;
+}
